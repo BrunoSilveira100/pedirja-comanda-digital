@@ -1,5 +1,4 @@
 <?php
-require_once "includes/auth.php";
-
-header("Location: " . (usuarioLogado() ? "painel.php" : "login.php"));
+// Ponto de entrada do projeto: as telas ficam em paginas/.
+header("Location: paginas/index.php");
 exit;

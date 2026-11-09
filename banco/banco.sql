@@ -82,7 +82,7 @@ INSERT INTO mesas (numero, qr_code_token) VALUES
 (3, 'mesa-03-c92e5f'),
 (4, 'mesa-04-d0a6b1');
 
--- Fotos: Pexels (licença livre), créditos no README
+-- Fotos dos produtos em assets/img/produtos/
 INSERT INTO produtos (nome, descricao, preco, categoria, disponivel, imagem) VALUES
 ('X-Burguer',          'Pão, hambúrguer 150g, queijo e salada',  24.90, 'Lanches',     TRUE,  'assets/img/produtos/x-burguer.jpg'),
 ('X-Bacon',            'Pão, hambúrguer 150g, queijo e bacon',   28.90, 'Lanches',     TRUE,  'assets/img/produtos/x-bacon.jpg'),

@@ -34,7 +34,7 @@ function svg(string $nome, string $classe = ""): string
 function versionado(string $caminho): string
 {
     $arquivo = __DIR__ . "/../" . $caminho;
-    return e($caminho . (is_file($arquivo) ? "?v=" . filemtime($arquivo) : ""));
+    return e(urlBaseLayout() . $caminho . (is_file($arquivo) ? "?v=" . filemtime($arquivo) : ""));
 }
 
 function logoSvg(): string
@@ -115,8 +115,8 @@ function inicioHtml(string $titulo): void
     <meta name="csrf-token" content="<?= e(csrfToken()) ?>">
     <title><?= e($titulo) ?> · PedirJá</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="assets/img/icone.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="assets/img/icone.svg">
+    <link rel="icon" href="<?= e(urlBaseLayout()) ?>assets/img/icone.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="<?= e(urlBaseLayout()) ?>assets/img/icone.svg">
     <link rel="stylesheet" href="<?= versionado("assets/css/app.css") ?>">
 </head>
 <body>

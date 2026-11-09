@@ -5,7 +5,7 @@ if (!function_exists("exigirPerfil")) {
     http_response_code(404);
     exit;
 }
-require_once __DIR__ . "/includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 cabecalho("Acesso negado");
 ?>

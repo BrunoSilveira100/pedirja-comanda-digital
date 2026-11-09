@@ -71,7 +71,7 @@
     function fotoProduto(p) {
         const vazia = () => el("div", { class: "foto-produto sem-foto", "aria-hidden": "true" }, icone("prato"));
         if (!p.imagem) return vazia();
-        const img = el("img", { class: "foto-produto", src: p.imagem, alt: p.nome, loading: "lazy", width: 800, height: 600 });
+        const img = el("img", { class: "foto-produto", src: PJ.arquivo(p.imagem), alt: p.nome, loading: "lazy", width: 800, height: 600 });
         img.addEventListener("error", () => img.replaceWith(vazia()), { once: true });
         return img;
     }

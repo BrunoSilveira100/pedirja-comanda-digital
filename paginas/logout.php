@@ -1,8 +1,8 @@
 <?php
 // Logout só por POST com token CSRF: um link ou imagem em outro site não consegue
 // deslogar o usuário. Em GET, mostra um botão de confirmação.
-require_once "includes/auth.php";   // aqui o CSRF do POST já foi verificado
-require_once "includes/usuarios.php";
+require_once __DIR__ . "/../includes/auth.php";   // aqui o CSRF do POST já foi verificado
+require_once __DIR__ . "/../includes/usuarios.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     encerrarSessao();
@@ -15,7 +15,7 @@ if (!usuarioLogado()) {
     exit;
 }
 
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 cabecalho("Sair");
 ?>
 <div class="vazio entra" style="max-width:520px;margin:40px auto">

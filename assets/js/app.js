@@ -28,7 +28,7 @@ const PJ = (() => {
         let dados = null;
         try { dados = await res.json(); } catch (_) { /* sem corpo JSON */ }
         if (res.status === 401) {
-            window.location.href = base + "login.php";
+            window.location.href = base + "paginas/login.php";
             throw new ErroApi(401, "Sessão expirada.");
         }
         if (!res.ok) {
@@ -312,7 +312,7 @@ const PJ = (() => {
 
     /* ---------- PWA ---------- */
     if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-        window.addEventListener("load", () => navigator.serviceWorker.register(base + "sw.js").catch(() => {}));
+        window.addEventListener("load", () => navigator.serviceWorker.register(base + "paginas/sw.js").catch(() => {}));
     }
 
     // Formulários com data-confirmar pedem confirmação antes de enviar
@@ -329,5 +329,6 @@ const PJ = (() => {
         api, ErroApi, el, icone, iconeSucesso, pontos, dinheiro, haQuanto, minutos, hora, STATUS, selo,
         escalonar, skeletonCards, skeletonLinhas, vazio, toast, tremer, comCarregando, modal, sucessoNoModal,
         confirmar, polling, rolarAte, local, reduzirMovimento,
+        arquivo: caminho => base + caminho,   // endereço de um arquivo a partir da raiz do projeto
     };
 })();

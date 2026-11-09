@@ -1,16 +1,16 @@
 // Service worker do PedirJá (PWA).
 // Guarda só os arquivos estáticos (CSS, JS, ícone) para abrir rápido.
 // Páginas PHP e API sempre vão ao servidor: dados de pedido nunca vêm do cache.
-const VERSAO = "pedirja-v2";   // v2: arquivos movidos para assets/css, assets/js e assets/img
+const VERSAO = "pedirja-v3";
 const ESTATICOS = [
-    "assets/css/app.css",
-    "assets/js/app.js",
-    "assets/js/cliente.js",
-    "assets/js/fila.js",
-    "assets/js/cozinha.js",
-    "assets/js/garcom.js",
-    "assets/js/admin.js",
-    "assets/img/icone.svg",
+    "../assets/css/app.css",
+    "../assets/js/app.js",
+    "../assets/js/cliente.js",
+    "../assets/js/fila.js",
+    "../assets/js/cozinha.js",
+    "../assets/js/garcom.js",
+    "../assets/js/admin.js",
+    "../assets/img/icone.svg",
     "manifest.json",
 ];
 

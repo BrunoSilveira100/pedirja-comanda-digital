@@ -1,9 +1,9 @@
 <?php
 // Tela da cozinha (PWA tablet): fila em tempo real (polling) e mudança de status.
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirPerfil("cozinha");
 
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 cabecalho("Cozinha", '<span class="status-ao-vivo"><span class="ponto"></span><span id="atualizado">Conectando…</span></span>');
 ?>

@@ -1,9 +1,9 @@
 <?php
-require_once "includes/auth.php";
-require_once "config/conexao.php";
-require_once "includes/usuarios.php";
-require_once "includes/tentativas.php";
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/auth.php";
+require_once __DIR__ . "/../config/conexao.php";
+require_once __DIR__ . "/../includes/usuarios.php";
+require_once __DIR__ . "/../includes/tentativas.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 if (usuarioLogado()) {
     header("Location: painel.php");

@@ -1,6 +1,6 @@
 <?php
 // Painel: leva cada perfil para a sua tela.
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirLogin();
 // daqui para baixo, só roda para quem está logado
 

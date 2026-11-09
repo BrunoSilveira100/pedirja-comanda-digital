@@ -1,5 +1,7 @@
 # PedirJá: validação completa do projeto
 
+> As telas ficam em `paginas/`: onde este documento cita `login.php`, `painel.php`, `produto_excluir.php` etc., o caminho é `paginas/<arquivo>`.
+
 Primeira validação em **07/11/2026** (só leitura do código). Validação final em **08/11/2026**, depois dos ajustes A2 e A3 e das novidades: fotos do cardápio, envio de foto pelo admin e QR Codes das mesas.
 
 **Resultado final:**

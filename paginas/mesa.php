@@ -2,9 +2,9 @@
 // mesa.php?t=TOKEN — destino do QR Code colado na mesa.
 // Valida o token no banco e guarda a mesa na sessão. O pedido usará
 // sempre a mesa da sessão, nunca um número enviado pelo navegador.
-require_once "includes/auth.php";
-require_once "config/conexao.php";
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/auth.php";
+require_once __DIR__ . "/../config/conexao.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 $token = trim($_GET["t"] ?? "");
 

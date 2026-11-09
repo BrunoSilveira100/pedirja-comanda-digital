@@ -30,7 +30,7 @@ function exigirLogin(): void
     if (defined("MODO_API")) {
         responderJson(401, ["erro" => "Não autenticado. Faça login."]);
     }
-    header("Location: " . urlBase() . "login.php");
+    header("Location: " . urlBase() . "paginas/login.php");
     exit;
 }
 
@@ -49,16 +49,16 @@ function exigirPerfil(string ...$perfis): void
         responderJson(403, ["erro" => "Acesso negado. Perfil não autorizado."]);
     }
     http_response_code(403);
-    require __DIR__ . "/../403.php";
+    require __DIR__ . "/../paginas/403.php";
     exit;
 }
 
 /**
- * Caminho base da aplicação (funciona em /pedirja/ ou na raiz, e dentro de /api/).
+ * Caminho base da aplicação (funciona em /pedirja/ ou na raiz, e dentro de /api/ e /paginas/).
  */
 function urlBase(): string
 {
     $dir = str_replace("\\", "/", dirname($_SERVER["SCRIPT_NAME"]));
-    $dir = preg_replace("#/api(/.*)?$#", "", $dir);
+    $dir = preg_replace("#/(api|paginas)(/.*)?$#", "", $dir);
     return rtrim($dir, "/") . "/";
 }

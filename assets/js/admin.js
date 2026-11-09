@@ -223,7 +223,7 @@
         };
         return el("tr", null,
             el("td", null, el("div", { class: "produto-linha" },
-                p.imagem ? el("img", { class: "miniatura", src: p.imagem, alt: "", loading: "lazy", width: 48, height: 48 })
+                p.imagem ? el("img", { class: "miniatura", src: PJ.arquivo(p.imagem), alt: "", loading: "lazy", width: 48, height: 48 })
                          : el("span", { class: "miniatura sem-foto", "aria-hidden": "true" }, icone("prato")),
                 el("div", null, el("strong", null, p.nome), el("small", null, p.descricao || "")))),
             el("td", null, p.categoria),
@@ -265,10 +265,11 @@
             ? el("label", { class: "linha", for: "f-remover", style: "font-weight:600" }, remover, "Remover a foto atual")
             : null;
         let urlPrevia = null;
+        const fotoAtual = p?.imagem ? PJ.arquivo(p.imagem) : null;
         const mostrarPrevia = src => previa.replaceChildren(src
             ? el("img", { src, alt: "Pré-visualização da foto" })
             : el("span", { class: "suave" }, icone("prato"), "Sem foto"));
-        mostrarPrevia(p?.imagem || null);
+        mostrarPrevia(fotoAtual);
         foto.onchange = () => {
             if (urlPrevia) URL.revokeObjectURL(urlPrevia);
             const arq = foto.files[0];
@@ -281,10 +282,10 @@
             erro.hidden = true;
             remover.checked = false;
             urlPrevia = arq ? URL.createObjectURL(arq) : null;
-            mostrarPrevia(urlPrevia || p?.imagem || null);
+            mostrarPrevia(urlPrevia || fotoAtual);
         };
         remover.onchange = () => {
-            if (remover.checked) { foto.value = ""; mostrarPrevia(null); } else { mostrarPrevia(p?.imagem || null); }
+            if (remover.checked) { foto.value = ""; mostrarPrevia(null); } else { mostrarPrevia(fotoAtual); }
         };
 
         const form = el("form", { novalidate: true },

@@ -66,7 +66,7 @@ if (!$local) {
 </head>
 <body>
 <header class="topo">
-    <a class="marca" href="../painel.php">PedirJá</a>
+    <a class="marca" href="../paginas/painel.php">PedirJá</a>
     <nav><span class="quem">Página de testes · só em localhost</span></nav>
 </header>
 
@@ -231,7 +231,7 @@ for (const [num, token] of Object.entries(MESAS)) {
     b.className = "botao botao-sec";
     b.type = "button";
     b.textContent = `Mesa ${num}`;
-    b.onclick = async () => { await chamar("GET", `mesa.php?t=${token}`); atualizarSessao(); };
+    b.onclick = async () => { await chamar("GET", `paginas/mesa.php?t=${token}`); atualizarSessao(); };
     document.getElementById("mesas").append(b);
 }
 document.getElementById("btn-logout").onclick = async () => { await chamar("POST", "api/logout.php"); atualizarSessao(); };
@@ -254,7 +254,7 @@ const XSS = "<script>alert(1)<\/script>";   // "<\/" evita fechar o <script> des
 const login = perfil => ({ nome: `login ${perfil}`, m: "POST", u: "api/login.php", b: CONTAS[perfil], espera: 200,
     salvar: (j, c) => { c.ids[perfil] = j.usuario.id; } });
 const logout = () => ({ nome: "logout", m: "POST", u: "api/logout.php", espera: [200, 401] });
-const mesa = (n, espera = 200) => ({ nome: `QR Code da mesa ${n}`, m: "GET", u: `mesa.php?t=${MESAS[n]}`, espera });
+const mesa = (n, espera = 200) => ({ nome: `QR Code da mesa ${n}`, m: "GET", u: `paginas/mesa.php?t=${MESAS[n]}`, espera });
 const contem = (lista, id) => Array.isArray(lista) && lista.some(p => p.id === id);
 
 const ROTEIRO = [
@@ -271,7 +271,7 @@ const ROTEIRO = [
     { s: "Autenticação" },
     { nome: "quem sou eu sem login", m: "GET", u: "api/me.php", espera: 401 },
     { nome: "cardápio sem login", m: "GET", u: "api/cardapio.php", espera: 401 },
-    { nome: "página protegida sem login volta para o login", m: "GET", u: "painel.php", espera: 200,
+    { nome: "página protegida sem login volta para o login", m: "GET", u: "paginas/painel.php", espera: 200,
       v: (j, c, r) => r.url.endsWith("/login.php") ? null : "não redirecionou para login.php" },
     { nome: "login sem campos", m: "POST", u: "api/login.php", b: {}, espera: 400 },
     { nome: "login com JSON quebrado", m: "POST", u: "api/login.php", b: "{oops", espera: 400 },
@@ -292,10 +292,10 @@ const ROTEIRO = [
       v: j => j.usuario.perfil === "cliente" ? null : "cadastro público aceitou perfil diferente de cliente" },
     { nome: "quem sou eu depois do cadastro", m: "GET", u: "api/me.php", espera: 200,
       v: j => j.usuario.perfil === "cliente" ? null : "perfil deveria ser cliente" },
-    { nome: "XSS: nome com <script> aparece escapado na página", m: "GET", u: "cliente.php", espera: 200,
+    { nome: "XSS: nome com <script> aparece escapado na página", m: "GET", u: "paginas/cliente.php", espera: 200,
       v: (j, c, r) => r.texto.includes("<script>alert") ? "o <script> foi para a página sem escape"
           : !r.texto.includes("&lt;script&gt;") ? "nome escapado não encontrado" : null },
-    { nome: "logout por GET não desloga (só mostra confirmação)", m: "GET", u: "logout.php", espera: 200 },
+    { nome: "logout por GET não desloga (só mostra confirmação)", m: "GET", u: "paginas/logout.php", espera: 200 },
     { nome: "continua logado depois do GET", m: "GET", u: "api/me.php", espera: 200 },
     logout(),
     { nome: "quem sou eu depois do logout", m: "GET", u: "api/me.php", espera: 401 },
@@ -305,9 +305,9 @@ const ROTEIRO = [
       v: j => /^[0-9a-f]{64}$/.test(j.csrf || "") ? null : "token com formato inesperado" },
     { nome: "login pela API sem token CSRF", m: "POST", u: "api/login.php", b: CONTAS.admin, op: { semToken: true }, espera: 403 },
     { nome: "login pela API com token falso", m: "POST", u: "api/login.php", b: CONTAS.admin, op: { token: "0".repeat(64) }, espera: 403 },
-    { nome: "formulário de login sem token CSRF", m: "POST", u: "login.php", b: CONTAS.admin, op: { semToken: true, form: true }, espera: 403,
+    { nome: "formulário de login sem token CSRF", m: "POST", u: "paginas/login.php", b: CONTAS.admin, op: { semToken: true, form: true }, espera: 403,
       v: (j, c, r) => r.texto.includes("expirou") ? null : "não mostrou a página de formulário expirado" },
-    { nome: "cabeçalhos de segurança nas páginas", m: "GET", u: "login.php", espera: 200,
+    { nome: "cabeçalhos de segurança nas páginas", m: "GET", u: "paginas/login.php", espera: 200,
       v: (j, c, r) => {
           const csp = r.headers.get("Content-Security-Policy") || "";
           if (!csp.includes("script-src 'self'")) return "Content-Security-Policy ausente";
@@ -331,7 +331,7 @@ const ROTEIRO = [
     login("cliente"),
     { nome: "pedido sem mesa na sessão", m: "POST", u: "api/pedidos.php",
       b: { itens: [{ produto_id: 1, quantidade: 1 }] }, espera: 400 },
-    { nome: "QR Code inválido", m: "GET", u: "mesa.php?t=token-falso", espera: 404 },
+    { nome: "QR Code inválido", m: "GET", u: "paginas/mesa.php?t=token-falso", espera: 404 },
     mesa(MESA_TESTE),
     { nome: "mesa gravada na sessão", m: "GET", u: "api/me.php", espera: 200,
       v: j => j.mesa === MESA_TESTE ? null : `mesa na sessão: ${j.mesa}` },
@@ -358,7 +358,7 @@ const ROTEIRO = [
     { nome: "cliente acompanha os pedidos", m: "GET", u: "api/pedidos.php", espera: 200,
       v: (j, c) => contem(j, c.pedido) ? null : "pedido criado não aparece" },
     { nome: "cliente tenta ver a fila da cozinha", m: "GET", u: "api/cozinha/pedidos.php", espera: 403 },
-    { nome: "cliente tenta excluir produto pela página", m: "POST", u: "produto_excluir.php", b: { id: 1 }, op: { form: true }, espera: 403 },
+    { nome: "cliente tenta excluir produto pela página", m: "POST", u: "paginas/produto_excluir.php", b: { id: 1 }, op: { form: true }, espera: 403 },
     { nome: "pedido sem token CSRF é recusado", m: "POST", u: "api/pedidos.php", op: { semToken: true },
       b: () => ({ itens: [{ produto_id: ctx.prod.id, quantidade: 1 }] }), espera: 403 },
     { nome: "cliente vê a conta da mesa", m: "GET", u: "api/cliente/pagamento.php", espera: 200 },

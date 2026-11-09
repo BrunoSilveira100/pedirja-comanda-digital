@@ -2,12 +2,12 @@
 // QR Codes das mesas (somente admin).
 // O IP do computador é descoberto na hora (includes/rede.php): trocou de rede, é só abrir
 // esta página de novo que os códigos já saem com o endereço certo.
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirPerfil("admin");
 
-require_once "config/conexao.php";
-require_once "includes/rede.php";
-require_once "includes/layout.php";
+require_once __DIR__ . "/../config/conexao.php";
+require_once __DIR__ . "/../includes/rede.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 $mesas = $pdo->query("SELECT numero, qr_code_token, status FROM mesas ORDER BY numero")->fetchAll();
 $endereco = enderecoDaRede();   // ex.: http://192.168.0.86 (placa Wi-Fi/cabo, nunca a virtual do WSL)

@@ -25,6 +25,7 @@ function req(string $ator, string $metodo, string $caminho, $corpo = null, array
 {
     global $BASE, $sess;
     $base = $op["base"] ?? $BASE;
+    if (!preg_match("#^(api|assets)/#", $caminho)) $caminho = "paginas/$caminho";   // as telas ficam em paginas/
     $ch = curl_init($base . $caminho);
     $h = [];
     if (!empty($sess[$ator])) $h[] = "Cookie: PHPSESSID=" . $sess[$ator];

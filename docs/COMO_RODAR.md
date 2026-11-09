@@ -13,21 +13,21 @@ Os links abaixo usam a pasta **`perdirja`**, que é o nome da pasta em `C:\xampp
 | O que | Link |
 |-------|------|
 | Sistema (abre o login) | http://localhost/perdirja/ |
-| Login | http://localhost/perdirja/login.php |
-| Criar conta de cliente | http://localhost/perdirja/cadastro.php |
-| Cardápio (lista com fotos) | http://localhost/perdirja/produtos.php |
+| Login | http://localhost/perdirja/paginas/login.php |
+| Criar conta de cliente | http://localhost/perdirja/paginas/cadastro.php |
+| Cardápio (lista com fotos) | http://localhost/perdirja/paginas/produtos.php |
 | Página de testes | http://localhost/perdirja/teste/ |
 | Banco de dados (phpMyAdmin) | http://localhost/phpmyadmin |
-| **QR Codes das mesas** (admin, IP automático) | http://localhost/perdirja/qrcodes.php |
+| **QR Codes das mesas** (admin, IP automático) | http://localhost/perdirja/paginas/qrcodes.php |
 
 ### Mesas (link que o QR Code abre)
 
 | Mesa | No computador | No celular (mesma rede) |
 |------|---------------|--------------------------|
-| 1 | http://localhost/perdirja/mesa.php?t=mesa-01-a7f3c9 | http://10.111.43.204/perdirja/mesa.php?t=mesa-01-a7f3c9 |
-| 2 | http://localhost/perdirja/mesa.php?t=mesa-02-b81d4e | http://10.111.43.204/perdirja/mesa.php?t=mesa-02-b81d4e |
-| 3 | http://localhost/perdirja/mesa.php?t=mesa-03-c92e5f | http://10.111.43.204/perdirja/mesa.php?t=mesa-03-c92e5f |
-| 4 | http://localhost/perdirja/mesa.php?t=mesa-04-d0a6b1 | http://10.111.43.204/perdirja/mesa.php?t=mesa-04-d0a6b1 |
+| 1 | http://localhost/perdirja/paginas/mesa.php?t=mesa-01-a7f3c9 | http://10.111.43.204/perdirja/paginas/mesa.php?t=mesa-01-a7f3c9 |
+| 2 | http://localhost/perdirja/paginas/mesa.php?t=mesa-02-b81d4e | http://10.111.43.204/perdirja/paginas/mesa.php?t=mesa-02-b81d4e |
+| 3 | http://localhost/perdirja/paginas/mesa.php?t=mesa-03-c92e5f | http://10.111.43.204/perdirja/paginas/mesa.php?t=mesa-03-c92e5f |
+| 4 | http://localhost/perdirja/paginas/mesa.php?t=mesa-04-d0a6b1 | http://10.111.43.204/perdirja/paginas/mesa.php?t=mesa-04-d0a6b1 |
 
 ### Usuários de teste
 
@@ -129,7 +129,7 @@ Use **duas janelas do navegador**: uma normal e uma anônima (**Ctrl+Shift+N**).
 
 | # | Quem | Onde | O que fazer |
 |---|------|------|-------------|
-| 1 | Cliente | janela anônima | Abra o link da **mesa 1**: http://localhost/perdirja/mesa.php?t=mesa-01-a7f3c9. A mesa fica guardada e abre o login. |
+| 1 | Cliente | janela anônima | Abra o link da **mesa 1**: http://localhost/perdirja/paginas/mesa.php?t=mesa-01-a7f3c9. A mesa fica guardada e abre o login. |
 | 2 | Cliente | mesma janela | Entre com `cliente@restaurante.com` / `Cliente@123`. No topo deve aparecer o selo **Mesa 1**. |
 | 3 | Cliente | mesma janela | No cardápio com fotos, toque em **Adicionar** nos itens. Depois, na barra de baixo, toque em **Ver pedido** e em **Enviar pedido**. |
 | 4 | Cozinha | janela normal | Entre com `cozinha@restaurante.com`. O pedido aparece em **Recebidos**. Toque em **Em preparo** e depois em **Pronto**. |
@@ -143,10 +143,10 @@ Use **duas janelas do navegador**: uma normal e uma anônima (**Ctrl+Shift+N**).
 
 | # | Teste | Resultado esperado |
 |---|-------|--------------------|
-| 1 | Sem login, abra http://localhost/perdirja/painel.php | volta para o login |
+| 1 | Sem login, abra http://localhost/perdirja/paginas/painel.php | volta para o login |
 | 2 | Erre a senha no login | "E-mail ou senha inválidos." (não diz qual dos dois errou) |
-| 3 | Entre como cliente e abra http://localhost/perdirja/admin.php | página **403 Acesso negado** |
-| 4 | Entre como admin, abra http://localhost/perdirja/produtos.php e exclua um produto que não está em nenhum pedido | produto excluído |
+| 3 | Entre como cliente e abra http://localhost/perdirja/paginas/admin.php | página **403 Acesso negado** |
+| 4 | Entre como admin, abra http://localhost/perdirja/paginas/produtos.php e exclua um produto que não está em nenhum pedido | produto excluído |
 | 5 | Clique em **Sair**, confirme e use o botão **Voltar** do navegador | a página protegida não volta |
 | 6 | No phpMyAdmin, abra a tabela `usuarios` | a coluna `senha_hash` mostra `$2y$10$...`, nunca a senha digitada |
 
@@ -159,13 +159,13 @@ O sistema **não abre a câmera**. Quem lê o QR Code é a câmera do próprio c
 1. Coloque celular e computador **na mesma rede**, de um destes dois jeitos:
    - **Hotspot do celular (internet roteada):** ligue o roteador Wi-Fi do celular e conecte o computador a ele. Os dados móveis do celular podem ficar ligados. É assim que está configurado hoje (rede **BH**, IP do computador **10.111.43.204**).
    - **Wi-Fi comum:** celular e computador no mesmo Wi-Fi. Nesse caso, o celular não pode estar usando os dados móveis.
-2. No **computador**, entre como **admin** e abra **QR Codes das mesas** no menu (ou http://localhost/perdirja/qrcodes.php).
+2. No **computador**, entre como **admin** e abra **QR Codes das mesas** no menu (ou http://localhost/perdirja/paginas/qrcodes.php).
    A página descobre sozinha o IP atual do computador e monta um QR Code por mesa. **Trocou de rede? Abra a página de novo**; não precisa rodar `ipconfig` nem digitar IP.
 3. No **celular**, abra a câmera e aponte para o código de uma mesa na tela do computador.
 4. Toque no link que aparecer. A mesa fica guardada e abre o login.
 5. Entre como cliente, escolha os itens e toque em **Ver pedido** e depois em **Enviar pedido**.
 
-Para testar sem QR Code, digite no navegador do celular o link que aparece embaixo do código de cada mesa (por exemplo **http://192.168.0.86/perdirja/mesa.php?t=mesa-01-a7f3c9**).
+Para testar sem QR Code, digite no navegador do celular o link que aparece embaixo do código de cada mesa (por exemplo **http://192.168.0.86/perdirja/paginas/mesa.php?t=mesa-01-a7f3c9**).
 
 **Na página QR Codes das mesas:**
 - **Endereço automático:** não há nada para escolher. A página usa o IP da placa de rede real (Wi-Fi ou cabo) e ignora as placas virtuais do Windows (Hyper-V/WSL 172.x, VirtualBox, VMware), que o celular não alcança.
@@ -178,7 +178,6 @@ Para testar sem QR Code, digite no navegador do celular o link que aparece embai
 **Observações:**
 - **`localhost` não funciona no celular**, porque lá ele aponta para o próprio celular. Por isso os códigos usam o IP do computador.
 - **Se o celular não abrir a página**: Windows → Firewall → **Permitir um aplicativo** → marque "Apache HTTP Server" no tipo da rede usada. O hotspot do celular costuma entrar como rede **Pública**, e o Wi-Fi de casa como **Privada**. Hoje a regra do Apache já está liberada para rede Pública.
-- **Página antiga:** a versão no claude.ai (https://claude.ai/artifact/Nm7Y1oQFdPvhKS485fJ4KN) continua existindo, mas nela o IP é digitado à mão. Prefira a página do sistema.
 
 ---
 
@@ -207,7 +206,7 @@ Toda resposta da API é JSON. Requisições que **alteram dados** (POST, PUT, PA
 | Pedir a conta (cliente) | `POST http://localhost/perdirja/api/cliente/pagamento.php` | — |
 | Fechar a conta (admin) | `POST http://localhost/perdirja/api/admin/caixa.php` | `{ "mesa_id": 1 }` |
 
-> Para fazer pedido pelo Postman, primeiro abra o link da mesa **no próprio Postman** (`GET http://localhost/perdirja/mesa.php?t=mesa-01-a7f3c9`), para a mesa ficar na sessão.
+> Para fazer pedido pelo Postman, primeiro abra o link da mesa **no próprio Postman** (`GET http://localhost/perdirja/paginas/mesa.php?t=mesa-01-a7f3c9`), para a mesa ficar na sessão.
 
 A lista completa de rotas, com o status esperado em cada caso, está em `docs/VALIDACAO.md`.
 

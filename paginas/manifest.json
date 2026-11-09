@@ -9,7 +9,7 @@
     "theme_color": "#c2410c",
     "lang": "pt-BR",
     "icons": [
-        { "src": "assets/img/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-        { "src": "assets/img/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+        { "src": "../assets/img/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+        { "src": "../assets/img/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
     ]
 }

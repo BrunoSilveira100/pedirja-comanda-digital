@@ -213,11 +213,11 @@ Total: 224 cenários · OK: 224 · Falharam: 0
 | 205 | 9. Fotos do cardápio (admin) | Foto maior que 3 MB | `POST /api/admin/produto_imagem.php` | 400 | 400 | ✅ |
 | 206 | 9. Fotos do cardápio (admin) | Admin troca a foto do X-Burguer | `POST /api/admin/produto_imagem.php` | 200 | 200 | ✅ |
 | 207 | 9. Fotos do cardápio (admin) | Nome da foto gerado pelo servidor | `banco: produtos.imagem` | p1-xxxxxxxx.jpg | p1-xxxxxxxx.jpg | ✅ |
-| 208 | 9. Fotos do cardápio (admin) | Foto nova abre pelo servidor | `GET /assets/img/produtos/p1-288493d3.jpg` | 200 | 200 | ✅ |
+| 208 | 9. Fotos do cardápio (admin) | Foto nova abre pelo servidor | `GET /assets/img/produtos/p1-76c24ce2.jpg` | 200 | 200 | ✅ |
 | 209 | 9. Fotos do cardápio (admin) | Foto original do cardápio não é apagada | `GET /assets/img/produtos/x-burguer.jpg` | 200 | 200 | ✅ |
-| 210 | 9. Fotos do cardápio (admin) | Trocar de novo apaga a foto enviada antes | `GET /assets/img/produtos/p1-288493d3.jpg` | 404 | 404 | ✅ |
+| 210 | 9. Fotos do cardápio (admin) | Trocar de novo apaga a foto enviada antes | `GET /assets/img/produtos/p1-76c24ce2.jpg` | 404 | 404 | ✅ |
 | 211 | 9. Fotos do cardápio (admin) | Remover a foto | `POST /api/admin/produto_imagem.php` | 200 / NULL | 200 / NULL | ✅ |
-| 212 | 9. Fotos do cardápio (admin) | Arquivo removido do servidor | `GET /assets/img/produtos/p1-1038b71a.jpg` | 404 | 404 | ✅ |
+| 212 | 9. Fotos do cardápio (admin) | Arquivo removido do servidor | `GET /assets/img/produtos/p1-fb38f4da.jpg` | 404 | 404 | ✅ |
 | 213 | 9. Fotos do cardápio (admin) | Caminho de imagem malicioso no banco é ignorado | `GET /api/cardapio.php` | NULL | NULL | ✅ |
 | 214 | 10. QR Codes das mesas | Sem login vai para o login | `GET /qrcodes.php` | 302 → login.php | 302 → login.php | ✅ |
 | 215 | 10. QR Codes das mesas | Cliente abrindo os QR Codes | `GET /qrcodes.php` | 403 | 403 | ✅ |
@@ -235,7 +235,7 @@ Total: 224 cenários · OK: 224 · Falharam: 0
 Observações:
 - **#10 Mensagem genérica: corpo idêntico nos dois casos:** {"erro":"E-mail ou senha inválidos."}
 - **#43 Login NÃO altera a linha do usuário (não há registro de último acesso):** Comportamento atual, ver ajuste sugerido A1
-- **#44 Sessão do usuário logado fica em arquivo no servidor:** conteúdo: ultimo_acesso|i:1794185731;csrf|s:64:"…";usuario_id|i:5;nome|s:19:"Cliente Validação";perfil|s:7:"cliente";
+- **#44 Sessão do usuário logado fica em arquivo no servidor:** conteúdo: ultimo_acesso|i:1794186980;csrf|s:64:"…";usuario_id|i:5;nome|s:19:"Cliente Validação";perfil|s:7:"cliente";
 - **#102 QR Code da mesa 4:** Location: painel.php
 - **#105 Pedido sem itens:** Informe pelo menos um item.
 - **#106 Quantidade zero:** Item 1: quantidade deve ser de 1 a 50.
@@ -251,6 +251,6 @@ Observações:
 - **#190 Erro 500 sem detalhe técnico:** {"erro":"Erro interno. Tente novamente mais tarde."}
 - **#198 Cardápio do cliente traz a foto dos produtos:** 8 produto(s) com foto
 - **#204 Arquivo falso (.jpg com código PHP):** Envie uma imagem JPG, PNG ou WEBP.
-- **#206 Admin troca a foto do X-Burguer:** assets/img/produtos/p1-288493d3.jpg
+- **#206 Admin troca a foto do X-Burguer:** assets/img/produtos/p1-76c24ce2.jpg
 - **#217 Endereço da rede descoberto sozinho:** http://192.168.0.86:8099
 - **#223 Mesmo pedido de novo (itens em outra ordem):** Este mesmo pedido acabou de ser enviado. Confira em "Meus pedidos".

@@ -1,11 +1,11 @@
 <?php
 // Listagem do tema (cardápio): qualquer usuário logado. (Exercício 1)
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirLogin();
 
-require_once "config/conexao.php";
-require_once "includes/produtos.php";
-require_once "includes/layout.php";
+require_once __DIR__ . "/../config/conexao.php";
+require_once __DIR__ . "/../includes/produtos.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 $ehAdmin = ($_SESSION["perfil"] === "admin");
 $produtos = listarProdutos($pdo, !$ehAdmin);   // quem não é admin só vê o que está disponível
@@ -42,7 +42,7 @@ cabecalho("Cardápio");
                     <td>
                         <div class="produto-linha">
                             <?php if ($p["imagem"]): ?>
-                                <img class="miniatura" src="<?= e($p["imagem"]) ?>" alt="" width="48" height="48" loading="lazy">
+                                <img class="miniatura" src="<?= e(urlBase() . $p["imagem"]) ?>" alt="" width="48" height="48" loading="lazy">
                             <?php else: ?>
                                 <span class="miniatura sem-foto" aria-hidden="true"><?= svg("prato") ?></span>
                             <?php endif; ?>

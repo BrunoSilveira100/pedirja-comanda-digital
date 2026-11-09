@@ -1,9 +1,9 @@
 <?php
 // Tela do cliente (PWA): cardápio, carrinho, acompanhamento dos pedidos e conta da mesa.
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirPerfil("cliente");
 
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 $mesa = $_SESSION["mesa_numero"] ?? null;
 $primeiroNome = explode(" ", $_SESSION["nome"] ?? "")[0];

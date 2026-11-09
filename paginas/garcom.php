@@ -1,9 +1,9 @@
 <?php
 // Tela do garçom (PWA celular): pedidos prontos e confirmação de entrega.
-require_once "includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 exigirPerfil("garcom");
 
-require_once "includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 
 cabecalho("Salão", '<span class="status-ao-vivo"><span class="ponto"></span><span id="atualizado">Conectando…</span></span>');
 ?>

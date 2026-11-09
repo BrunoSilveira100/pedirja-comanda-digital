@@ -50,7 +50,7 @@
 
     function desenhar() {
         for (const cartao of cartoes) {
-            const url = `${endereco}${caminho}mesa.php?t=${encodeURIComponent(cartao.dataset.token)}`;
+            const url = `${endereco}${caminho}paginas/mesa.php?t=${encodeURIComponent(cartao.dataset.token)}`;
             const alvo = cartao.querySelector(".qr");
             alvo.replaceChildren(window.QRCode ? svgDoQr(url) : document.createTextNode("Use o link abaixo."));
             cartao.querySelector(".qr-link").textContent = url;
