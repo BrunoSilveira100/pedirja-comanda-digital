@@ -1,0 +1,8 @@
+# Credenciais locais do banco (use config/conexao.exemplo.php como modelo)
+config/conexao.php
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
